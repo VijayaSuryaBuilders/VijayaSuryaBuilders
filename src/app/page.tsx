@@ -1,101 +1,112 @@
-import Image from "next/image";
-
-export default function Home() {
+"use client";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import Projects from "@/components/Projects";
+import Strengths from "@/components/Strengths";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { AnimatedTestimonials } from "@/components/blocks/animated-testimonials";
+function App() {
+  useEffect(() => {
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    // Initialize smooth scrolling
+    const smoother = gsap.utils.toArray(".section");
+    smoother.forEach((section: any) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top-=100",
+        end: "bottom top-=100",
+        toggleClass: { targets: section, className: "active" },
+      });
+    });
+    // Clean up on component unmount
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="relative overflow-x-hidden"
+    >
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Projects />
+        <Strengths />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <AnimatedTestimonials
+          testimonials={[
+            {
+              id: 1,
+
+              name: "Rahul Sharma",
+
+              role: "Villa Owner, Kudroli",
+
+              company: "Mangalore",
+
+              content:
+                "Vijayasurya Builders transformed my dream home into reality. Their attention to detail and commitment to quality is unmatched. I couldn't be happier with the results!",
+
+              rating: 5,
+
+              avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            },
+
+            {
+              id: 2,
+
+              name: "Priya Nayak",
+
+              role: "Commercial Project",
+
+              company: "Mangalore",
+
+              content:
+                "Professional, reliable, and efficient! Vijayasurya Builders delivered our commercial project on time and within budget. Their team is knowledgeable and easy to work with.",
+
+              rating: 4,
+
+              avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+            },
+
+            {
+              id: 3,
+
+              name: "Suresh Kamath",
+
+              role: "Villa Client",
+
+              company: "Kotekar",
+
+              content:
+                "The team at Vijayasurya Builders is exceptional. They guided us through every step of the construction process, ensuring our vision was realized. Highly recommend!",
+
+              rating: 5,
+
+              avatar: "https://randomuser.me/api/portraits/men/46.jpg",
+            },
+          ]}
+          trustedCompanies={[]}
+        />
+
+        <Contact />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <Footer />
+    </motion.div>
   );
 }
+export default App;

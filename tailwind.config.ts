@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,11 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#000000",
+        light: "#f8f9fa",
+        accent: "#ff6b35",
+        dark: "#1a1a1a",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        bebas: ["Bebas Neue", "cursive"],
       },
     },
   },
   plugins: [],
 };
-export default config;
