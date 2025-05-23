@@ -8,10 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#000000",
-        light: "#f8f9fa",
-        accent: "#ff6b35",
-        dark: "#1a1a1a",
+        primary: "#000000", // Black for brutalist design
+        light: "#f8f9fa", // Light gray background
+        accent: "#ff6b35", // Orange accent color
+        dark: "#1a1a1a", // Dark gray
+        teal: "#008080", // Teal color
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

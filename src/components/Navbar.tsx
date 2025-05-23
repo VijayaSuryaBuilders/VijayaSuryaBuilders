@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Building2 } from "lucide-react";
-
+import Image from "next/image";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,10 +52,13 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <Building2 className="h-8 w-8 mr-2" />
-            <span className="font-bebas text-xl md:text-2xl tracking-wider">
-              VIJAYASURYA
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={50}
+              height={50}
+              className="h-20 w-auto r-2"
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -74,7 +76,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="nav-item font-medium text-primary hover:text-accent transition-colors"
+                className="nav-item font-medium text-primary hover:text-teal transition-colors"
               >
                 {item.name}
               </a>

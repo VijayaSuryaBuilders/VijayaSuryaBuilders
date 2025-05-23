@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -23,17 +23,23 @@ const About: React.FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.6 },
     },
   };
 
   const companyDetails = [
-    { label: 'Name of Firm', value: 'Vijayasurya Builders & Developers Pvt Ltd' },
-    { label: 'Year of Establishment', value: '2019 (Parent company since 1980)' },
-    { label: 'Concern Type', value: 'Private Limited Company' },
-    { label: 'PAN', value: 'ABCDE1234F' },
-    { label: 'GSTIN', value: '29ABCDE1234F1Z5' },
-    { label: 'E.P.F. No.', value: 'KN/MNG/12345' },
+    {
+      label: "Name of Firm",
+      value: "Vijayasurya Builders & Developers Pvt Ltd",
+    },
+    {
+      label: "Year of Establishment",
+      value: "2019 (Parent company since 1980)",
+    },
+    { label: "Concern Type", value: "Private Limited Company" },
+    { label: "PAN", value: "ABCDE1234F" },
+    { label: "GSTIN", value: "29ABCDE1234F1Z5" },
+    { label: "E.P.F. No.", value: "KN/MNG/12345" },
   ];
 
   return (
@@ -54,20 +60,24 @@ const About: React.FC = () => {
             <motion.div variants={itemVariants} className="space-y-6">
               <h3 className="subheading">Introduction</h3>
               <p className="text-lg">
-                We are a Civil Engineering Construction firm with over 40 years of expertise in building 
-                residential, commercial, and institutional structures. Our team has successfully completed 
-                numerous projects across Karnataka, earning a reputation for quality and reliability.
+                We are a Civil Engineering Construction firm with over 40 years
+                of expertise in building residential, commercial, and
+                institutional structures. Our team has successfully completed
+                numerous projects across Karnataka, earning a reputation for
+                quality and reliability.
               </p>
               <p className="text-lg">
-                Established in 2019, Vijayasurya Builders & Developers Pvt Ltd builds on the foundation 
-                laid since 1980. Our focus is on delivering excellence through integrity, quality materials, 
-                and skilled craftsmanship.
+                Established in 2019, Vijayasurya Builders & Developers Pvt Ltd
+                builds on the foundation laid since 1980. Our focus is on
+                delivering excellence through integrity, quality materials, and
+                skilled craftsmanship.
               </p>
               <div className="pt-4">
                 <h3 className="subheading">Vision & Mission</h3>
                 <p className="text-lg italic">
-                  "To be recognized as a leader in the construction industry, known for integrity, 
-                  innovation, and exceptional quality while building structures that stand the test of time."
+                  "To be recognized as a leader in the construction industry,
+                  known for integrity, innovation, and exceptional quality while
+                  building structures that stand the test of time."
                 </p>
               </div>
             </motion.div>
@@ -76,8 +86,13 @@ const About: React.FC = () => {
               <h3 className="subheading mb-6">Company Details</h3>
               <div className="space-y-4">
                 {companyDetails.map((detail, index) => (
-                  <div key={index} className="flex flex-col border-b border-gray-200 pb-3">
-                    <span className="text-sm font-medium text-gray-500">{detail.label}</span>
+                  <div
+                    key={index}
+                    className="flex flex-col border-b border-gray-200 pb-3"
+                  >
+                    <span className="text-sm font-medium text-gray-500">
+                      {detail.label}
+                    </span>
                     <span className="text-lg font-medium">{detail.value}</span>
                   </div>
                 ))}
@@ -85,23 +100,23 @@ const About: React.FC = () => {
             </motion.div>
           </div>
 
-          <motion.div 
-            variants={itemVariants} 
-            className="mt-16 p-8 bg-secondary text-white"
+          <motion.div
+            variants={itemVariants}
+            className="mt-16 p-8 bg-secondary text-primary  concrete-texture rounded-lg shadow-lg"
           >
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="mb-6 md:mb-0">
-                <h3 className="subheading text-white">Our Journey</h3>
-                <p className="text-lg">From our humble beginnings in 1980 to becoming a trusted name in construction</p>
+                <h3 className="subheading text-teal">Our Journey</h3>
+                <p className="text-lg">
+                  From our humble beginnings in 1980 to becoming a trusted name
+                  in construction
+                </p>
               </div>
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block py-2 px-4 bg-white text-primary font-bebas tracking-wider 
-                text-xl uppercase transition-transform duration-300 
-                shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:translate-x-1 hover:translate-y-1 
-                hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.3)]"
+                className="brutalist-button"
               >
                 Work With Us
               </motion.a>

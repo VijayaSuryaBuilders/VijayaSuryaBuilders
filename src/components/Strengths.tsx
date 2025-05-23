@@ -87,7 +87,11 @@ const Strengths: React.FC = () => {
   };
 
   return (
-    <section id="strengths" ref={ref} className="section py-20 bg-gray-100">
+    <section
+      id="strengths"
+      ref={ref}
+      className="section py-20 concrete-texture "
+    >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           variants={containerVariants}
@@ -115,7 +119,7 @@ const Strengths: React.FC = () => {
                     </div>
                     <div className="h-6 bg-gray-200 w-full relative">
                       <div
-                        className="bar h-full bg-primary absolute top-0 left-0"
+                        className="bar h-full bg-teal absolute top-0 left-0"
                         style={
                           {
                             "--target-width": `${(data.amount / maxTurnover) * 100}%`,
@@ -144,7 +148,7 @@ const Strengths: React.FC = () => {
               <motion.div variants={itemVariants} className="brutalist-card">
                 <h3 className="subheading">Certifications</h3>
                 <div className="mt-4 p-4 border-2 border-primary text-center">
-                  <p className="text-xl font-bebas tracking-wider">
+                  <p className="text-2xl font-bebas text-amber-500 tracking-wider">
                     PWD CLASS III LICENSE
                   </p>
                 </div>
@@ -168,7 +172,7 @@ const Strengths: React.FC = () => {
                   </div>
                   <h4 className="text-xl font-bebas mb-2">{person.name}</h4>
                   <p className="text-gray-600 mb-1">{person.role}</p>
-                  <p className="font-medium">{person.experience}</p>
+                  <p className="font-medium text-teal">{person.experience}</p>
                 </motion.div>
               ))}
             </div>

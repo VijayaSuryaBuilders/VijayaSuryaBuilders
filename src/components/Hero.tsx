@@ -1,9 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import { Award } from "lucide-react";
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="section relative min-h-screen flex items-center justify-center pt-16 concrete-bg">
+    <section
+      id="home"
+      className="section relative min-h-screen flex items-center justify-center pt-16 concrete-bg"
+    >
       <div className="absolute inset-0 bg-black bg-opacity-10"></div>
       <div className="container mx-auto px-4 md:px-6 py-12 z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -49,10 +53,17 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="brutalist-card w-full aspect-square flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-xl font-bold mb-4">Licensed with KPWD as</p>
-                <p className="text-4xl md:text-5xl font-bebas tracking-wider">CLASS-III</p>
-                <p className="text-2xl md:text-3xl font-bebas tracking-wider mt-2">CONTRACTOR</p>
+              <div className="text-center justify-items-center">
+                <Award className="w-20 h-20 mx-auto mb-3 justify-items-center text-amber-500" />
+                <p className="text-2xl font-bold text-amber-500 mb-4">
+                  Licensed with KPWD as
+                </p>
+                <p className="text-6xl md:text-5xl font-bebas text-amber-500 tracking-wider">
+                  CLASS-III
+                </p>
+                <p className="text-4xl md:text-3xl font-bebas tracking-wider text-amber-500 mt-2">
+                  CONTRACTOR
+                </p>
               </div>
             </div>
           </motion.div>
