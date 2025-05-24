@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="font-medium text-primary hover:text-accent transition-colors"
+                className="font-medium text-primary hover:text-teal transition-colors"
               >
                 {item.name}
               </a>
