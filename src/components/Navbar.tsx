@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -17,24 +18,22 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(offset > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    setIsOpen(false);
     const element = document.querySelector(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", sectionId);
+      // Delay closing mobile menu to allow scroll to start
+      setTimeout(() => setIsOpen(false), 300);
+    } else {
+      setIsOpen(false);
     }
   };
 
@@ -87,7 +86,9 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`flex flex-col space-y-1.5 focus:outline-none ${isOpen ? "hamburger-active" : ""}`}
+              className={`flex flex-col space-y-1.5 focus:outline-none ${
+                isOpen ? "hamburger-active" : ""
+              }`}
             >
               <span className="hamburger-line"></span>
               <span className="hamburger-line"></span>
@@ -103,6 +104,7 @@ const Navbar: React.FC = () => {
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
         className="md:hidden overflow-hidden bg-white"
+        layout
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col space-y-4">

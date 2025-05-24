@@ -13,6 +13,7 @@ import Strengths from "@/components/Strengths";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AnimatedTestimonials from "@/components/blocks/animated-testimonials";
+import ThreeHero from "@/components/ThreeHero";
 function App() {
   useEffect(() => {
     // Register GSAP plugins
@@ -42,6 +43,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <ThreeHero/>
         <About />
         <Services />
         <Projects />

@@ -9,12 +9,14 @@ const ContactSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+
   const { toast } = useToast();
 
   const handleInputChange = (
@@ -24,16 +26,6 @@ const ContactSection = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   const contactInfo = [
@@ -91,8 +83,29 @@ const ContactSection = () => {
             viewport={{ once: true }}
           >
             <div className="brutalist-card p-8">
-              <h3 className="brutalist-heading text-2xl mb-6">GET IN TOUCH</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <h3 className="brutalist-heading text-2xl mb-6">
+                GET IN TOUCH FOR WORK
+              </h3>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const { name, phone, message } = formData;
+                  if (!name || !phone || !message) {
+                    toast({
+                      title: "Missing Fields",
+                      description:
+                        "Please fill in all required fields before sending.",
+                    });
+                    return;
+                  }
+
+                  const text = `Hi, I'm ${name} (${phone}). ${message}`;
+                  const encodedMsg = encodeURIComponent(text);
+                  const whatsappUrl = `https://wa.me/917411145428?text=${encodedMsg}`;
+                  window.open(whatsappUrl, "_blank");
+                }}
+                className="space-y-6"
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -173,14 +186,14 @@ const ContactSection = () => {
                   className="brutalist-button w-full flex items-center justify-center gap-3 px-6 py-3 transition-all group"
                 >
                   <span className="text-xl font-semibold tracking-wide">
-                    SEND MESSAGE
+                    SEND MESSAGE ON WHATSAPP
                   </span>
                 </button>
               </form>
             </div>
           </motion.div>
 
-          {/* Contact Information */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -217,7 +230,7 @@ const ContactSection = () => {
                 </motion.div>
               ))}
 
-              {/* Key Contact Person */}
+              {/* Key Contact */}
               <motion.div
                 className="brutalist-card-b p-6 text-primary"
                 initial={{ opacity: 0, y: 20 }}
