@@ -1,5 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -9,6 +7,7 @@ import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { Loader2, ArrowRight, Mail } from 'lucide-react';
 
+// 3D Building Model Component
 function BuildingModel() {
   const { scene } = useGLTF('/model/building.glb');
   const modelRef = useRef<THREE.Group>(null);
@@ -19,26 +18,37 @@ function BuildingModel() {
     }
   });
 
-  scene.traverse((obj: any) => {
-    if (obj.isMesh) {
-      obj.castShadow = true;
-      obj.receiveShadow = true;
+  scene.traverse((obj: THREE.Object3D) => {
+    if ((obj as THREE.Mesh).isMesh) {
+      const mesh = obj as THREE.Mesh;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
     }
   });
 
-  return <primitive ref={modelRef} object={scene} scale={1.8} position={[0, -1.2, 0]} />;
+  return (
+    <primitive
+      ref={modelRef}
+      object={scene}
+      scale={1.8}
+      position={[0, -1.2, 0]}
+    />
+  );
 }
 
+// Fallback loader while model loads
 function ModelLoader() {
   return (
     <Html center>
       <div className="flex items-center gap-2 text-sm text-gray-600 animate-pulse">
-        <Loader2 className="animate-spin" /> Loading model...
+        <Loader2 className="animate-spin" />
+        Loading model...
       </div>
     </Html>
   );
 }
 
+// Main Hero Section Component
 export default function ThreeHero() {
   return (
     <section className="section bg-gradient-to-br from-white to-gray-100 text-black relative py-24 overflow-hidden">
@@ -77,7 +87,7 @@ export default function ThreeHero() {
           </div>
         </motion.div>
 
-        {/* 3D Canvas */}
+        {/* 3D Canvas Section */}
         <motion.div
           className="lg:w-1/2 w-full h-[500px] rounded-2xl shadow-xl bg-white/10 backdrop-blur-md border border-gray-300"
           initial={{ opacity: 0, x: 80 }}
